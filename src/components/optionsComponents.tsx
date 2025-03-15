@@ -5,12 +5,12 @@ import { useState } from "react";
 
 // Answer Questions box (with behavioral/technical button)
 function AnswerQuestions() {
-    return (
-        <div>
-        <button>Behavioral</button>
-        <button>Technical</button>
-        </div>
-    )
+  return (
+    <div>
+    <button>Behavioral</button>
+    <button>Technical</button>
+    </div>
+  )
 }
 // Practice Answered questions box (with behavioral/technical button)
 
