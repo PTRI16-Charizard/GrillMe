@@ -5,9 +5,11 @@ import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
+const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <GoogleOAuthProvider clientId="197457373676-6dvfv01ruaqeb2jjagulcq6ese9dv530.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={clientId}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
