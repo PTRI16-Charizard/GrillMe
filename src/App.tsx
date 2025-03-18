@@ -1,8 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css'
-import Login from './components/loginComponents';
-import AnswerQuestions from './components/optionsComponents';
-
+import Login from './components/Login/loginComponents';
+import AnswerQuestions from './components/Options/optionsComponents';
+import CreateBehavioralQuestion from './components/CreateBehavioral/CreateBQuestion';
+import CreateTechnicalQuestion from './components/CreateTechnical/CreateTQuestion';
+import PracticeBehavioralQuestion from './components/PracticeBehavioral/PracticeBQuestions';
+import PracticeTechnicalQuestion from './components/PracticeTechnical/PracticeTQuestions';
 function App() {
 
   return (
@@ -11,10 +14,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Login/>}></Route>
         <Route path="/options" element={<AnswerQuestions/>}></Route>
+        <Route path="/createBehavioral" element={<CreateBehavioralQuestion/>}></Route>
+        <Route path="/createTechnical" element={<CreateTechnicalQuestion/>}></Route>
+        <Route path="/practiceBehavioral" element={<PracticeBehavioralQuestion/>}></Route>
+        <Route path="/practiceTechnical" element={<PracticeTechnicalQuestion/>}></Route>
       </Routes>
     </div>
   )
-
 }
 
 export default App;
