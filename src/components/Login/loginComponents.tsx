@@ -2,7 +2,6 @@
 // import { useState } from "react";
 import { useNavigate } from "react-router";
 import { GoogleLogin } from "@react-oauth/google";
- 
 // interface LoginState {
 //     isLoggedIn: boolean;
 // }
