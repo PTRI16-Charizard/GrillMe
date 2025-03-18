@@ -2,6 +2,7 @@ import express from 'express';
 import { OAuth2Client } from 'google-auth-library';
 import Flashcard from '../models/flashcard';
 import User from '../models/user';
+import user from '../models/user';
 
 const router = express.Router();
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -39,10 +40,10 @@ router.get('/', async (req, res) => {
   }
 })
 
-// Get random flashcard
-router.get('/random', async (req, res) => {
+// Get random flashcard based on userId
+router.get('/:id/random', async (req, res) => {
   try {
-    const flashcards = await Flashcard.find();
+    const flashcards = await Flashcard.find({ user: req.params.id});
     const randomCard = flashcards[Math.floor(Math.random() * flashcards.length)];
     return res.json(randomCard);
   } catch (error) {
@@ -69,18 +70,36 @@ router.post('/create', async (req, res) => {
 })
 
 // Update flashcard
-router.put('/:id', async (req, res) => {
+router.put('/update/:id', async (req, res) => {
   try {
-    
+    const { answer, userId } = req.body;
+    const user = userId;
+    const updatedFlashcard = await Flashcard.findByIdAndUpdate(
+      req.params.id,
+      { answer, user },
+      { new: true }
+    );
+
+    if (!updatedFlashcard) {
+      return res.status(404).json({ message: 'Flashcard not found' });
+    }
+
+    return res.status(200).json(updatedFlashcard);
   } catch (error) {
     return res.status(500).json({ message: 'Error updating flashcard', error: error})
   }
 })
 
 // Delete flashcard
-router.put('/:id', async (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
   try {
-    
+    const deletedFlashcard = await Flashcard.findByIdAndDelete(req.params.id);
+
+    if (!deletedFlashcard) {
+      return res.status(404).json({ message: 'Flashcard not found' });
+    }
+
+    return res.status(200).json({ message: 'Flashcard deleted'})
   } catch (error) {
     return res.status(500).json({ message: 'Error deleting flashcard', error: error})
   }
