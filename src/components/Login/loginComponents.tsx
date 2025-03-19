@@ -33,6 +33,7 @@ function Login (){
 
       const data = await response.json();
       console.log(data);
+      localStorage.setItem('ID', data.user._id)
       navigate('/options');
     } catch (error) {
       console.error('Login failed', error);

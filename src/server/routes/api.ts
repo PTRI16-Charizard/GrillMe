@@ -2,7 +2,7 @@ import express from 'express';
 import { OAuth2Client } from 'google-auth-library';
 import Flashcard from '../models/flashcard';
 import User from '../models/user';
-import user from '../models/user';
+
 
 const router = express.Router();
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -31,9 +31,12 @@ router.post('/auth/google', async (req, res) => {
 })
 
 // Get flashcards
-router.get('/', async (req, res) => {
+router.get('/:userId', async (req, res) => {
   try {
-    const flashcards = await Flashcard.find();
+    const { userId } = req.params;
+    const flashcards = await Flashcard.find({
+      $or: [{ user: userId }, { user: null }]
+    });
     return res.json(flashcards);
   } catch (error) {
     return res.status(500).json({ message: 'Error fetching flashcards', error: error})
@@ -41,9 +44,9 @@ router.get('/', async (req, res) => {
 })
 
 // Get random flashcard based on userId
-router.get('/:id/random', async (req, res) => {
+router.get('/:userId/random', async (req, res) => {
   try {
-    const flashcards = await Flashcard.find({ user: req.params.id});
+    const flashcards = await Flashcard.find({ user: req.params.userId});
     const randomCard = flashcards[Math.floor(Math.random() * flashcards.length)];
     return res.json(randomCard);
   } catch (error) {
@@ -74,17 +77,31 @@ router.put('/update/:id', async (req, res) => {
   try {
     const { answer, userId } = req.body;
     const user = userId;
-    const updatedFlashcard = await Flashcard.findByIdAndUpdate(
-      req.params.id,
-      { answer, user },
-      { new: true }
-    );
-
-    if (!updatedFlashcard) {
+    
+    const flashcardToBeUpdated = await Flashcard.findById(req.params.id);
+    if (!flashcardToBeUpdated) {
       return res.status(404).json({ message: 'Flashcard not found' });
     }
+    
+    if (!flashcardToBeUpdated.user) {
+      const newFlashcard = new Flashcard({
+        question: flashcardToBeUpdated.question,
+        answer: answer,
+        category: flashcardToBeUpdated.category,
+        user: userId,
+      });
+      
+      const savedFlashcard = await newFlashcard.save();
+      return res.status(200).json(savedFlashcard);
+    } else {
+      const updatedFlashcard = await Flashcard.findByIdAndUpdate(
+        req.params.id,
+        { answer, user },
+        { new: true }
+      );
+      return res.status(200).json(updatedFlashcard);
+  }
 
-    return res.status(200).json(updatedFlashcard);
   } catch (error) {
     return res.status(500).json({ message: 'Error updating flashcard', error: error})
   }
