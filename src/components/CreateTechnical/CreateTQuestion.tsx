@@ -14,7 +14,7 @@ const CreateTechnicalQuestion: React.FC = () => {
         useEffect(() => {
             const fetchQuestions = async () => {
                 try {
-                    const response = await fetch('http://localhost:3000/api/')
+                    const response = await fetch(`http://localhost:3000/api/${localStorage.getItem('ID')}`)
                     const data = await response.json();
                     setQuestions(data);
                     console.log('this is data', data)
