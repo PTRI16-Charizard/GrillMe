@@ -32,7 +32,7 @@ function CreateBehavioralQuestion() {
                     display: "grid",
                     placeItems: "center"
             }}>
-                <div style={{
+                {/* <div style={{
                 width: '400px', 
                 height: '100px', 
                 backgroundColor: 'white', 
@@ -41,7 +41,7 @@ function CreateBehavioralQuestion() {
                 // paddingTop: 
                 // justifyContent: "center"
                 }}>
-                     </div>
+                     </div> */}
                 </div>
             </div>
         </div>
