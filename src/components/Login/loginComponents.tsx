@@ -10,7 +10,7 @@ interface CredentialResponse {
   credential: string;
 }
  
-function Login (){
+const Login: React.FC = () => {
   const navigate = useNavigate();
   // const [isLoggedIn, setIsLoggedIn] = useState<LoginState>(isLoggedIn:false);
   
@@ -26,7 +26,7 @@ function Login (){
         },
         body: JSON.stringify({ token: credential }),
       });
-
+      // store user id in local storage
       if (!response.ok) {
         throw new Error('Network error');
       }

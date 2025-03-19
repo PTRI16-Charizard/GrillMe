@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 
- function PracticeQuestionsBox () {
+ const PracticeQuestionsBox: React.FC = () => {
     
   const navigate = useNavigate();
 

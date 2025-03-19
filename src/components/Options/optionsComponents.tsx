@@ -4,7 +4,7 @@ import CreateQuestionsBox from "./CreateParentBox";
 import PracticeQuestionsBox from "./PracticeQuestions";
 
 // Answer Questions box (with behavioral/technical button)
-function AnswerQuestions() {
+const AnswerQuestions: React.FC = () => {
   return (
     <div style={{fontFamily: "fantasy"}}>
       <div>
