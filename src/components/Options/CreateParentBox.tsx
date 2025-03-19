@@ -2,15 +2,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-function CreateQuestionsBox () {
+const CreateQuestionsBox: React.FC = () => {
     const navigate = useNavigate();
   
-    const HandleCreateBehavioral = () => {
-      navigate('/createBehavioral');  
+    const HandleCreateTechnical = () => {
+      navigate('/createTechnical');  
     }
   
-    const HandleCreateTechnical = () => {
-      navigate('/createTechnical');
+    const HandleCreateBehavioral = () => {
+      navigate('/createBehavioral');
     }
 
     return (
