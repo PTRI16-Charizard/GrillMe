@@ -90,7 +90,7 @@ const CreateTechnicalQuestion: React.FC = () => {
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: 'center'
-                        }}>  
+                        }}>
                         <p>{questions.question}</p>
                         </div>
                         </div>
