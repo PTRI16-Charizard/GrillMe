@@ -6,6 +6,8 @@ import CreateBehavioralQuestion from './components/CreateBehavioral/CreateBQuest
 import CreateTechnicalQuestion from './components/CreateTechnical/CreateTQuestion';
 import PracticeBehavioralQuestion from './components/PracticeBehavioral/PracticeBQuestions';
 import PracticeTechnicalQuestion from './components/PracticeTechnical/PracticeTQuestions';
+import TechnicalFlashcard from './components/CreateTechnicalFlashcard/TFlashcardComponent';
+
 function App() {
 
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path="/createBehavioral" element={<CreateBehavioralQuestion/>}></Route>
         <Route path="/practiceBehavioral" element={<PracticeBehavioralQuestion/>}></Route>
         <Route path="/practiceTechnical" element={<PracticeTechnicalQuestion/>}></Route>
+        <Route path="/createTechnicalFlashcards/:id" element={<TechnicalFlashcard/>}></Route>
       </Routes>
     </div>
   )
