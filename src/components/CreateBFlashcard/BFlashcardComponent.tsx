@@ -1,6 +1,7 @@
 import { text } from "express";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import MyForm from "../SubmitAnswer/SubmitAnswer";
 
 interface BehavioralFlashcardProps {
     id: string;
@@ -18,6 +19,7 @@ const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
     const [behavioralQ, setBehavioralQ] = useState('');
 
     useEffect(() => {
+        
         const fetchBehavioralQ = async () => {
             try {
                 let data = sessionStorage.getItem("BehavioralQObject");
@@ -65,14 +67,15 @@ const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <form style={{paddingTop: '50px'}}>
+                    <form
+                    style={{paddingTop: '50px'}}>
                         <label style={{fontSize: 'large' ,fontFamily: "papyrus", display: 'center'}}>
                             {behavioralQ}
                         </label>
-                        <input type="text" style={{
+                        {/* <input type="text" style={{
                             color: "pastelblack",
                             textAlign: "center",
-                             fontSize: 'large',
+                            fontSize: 'large',
                             justifyContent: "center",
                             margin: '50px',
                             width: '600px',
@@ -80,8 +83,8 @@ const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
                             transition: "0.3s all",
                             boxShadow: "5000px 4px 20px 0px rgba(0, 0, 0, 0.05)",
                         }}
-                    
-                          />
+                        /> */}
+                        <MyForm apiUrl="http://localhost:3000/api/answer"/>
                     </form>
                 </div>
         </div>

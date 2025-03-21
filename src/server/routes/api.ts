@@ -68,7 +68,8 @@ router.get('/presets/:category/:userId', async (req: Request, res: Response): Pr
 router.post('/answer', async (req: Request, res: Response): Promise<any> => {
   try {
     const { question, answer, category, user, preset } = req.body;
-
+    // const {answer} = req.body
+    // const {question, category, user, preset} =req.params._id
     const newFlashcard = new Flashcard({
       question: question,
       answer: answer,
@@ -76,7 +77,7 @@ router.post('/answer', async (req: Request, res: Response): Promise<any> => {
       user: user,
       preset: preset
     });
-
+    console.log('req.params._id', req.params._id)
     const savedFlashcard = await newFlashcard.save();
     return res.status(200).json(savedFlashcard)
   } catch (error) {

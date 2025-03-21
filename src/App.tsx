@@ -24,7 +24,6 @@ function App() {
         <Route path="/createTechnicalFlashcards/:id" element={<TechnicalFlashcard/>}></Route>
         <Route path="/createBehavioralFlashcards/:id" element={<BehavioralFlashcard/>}></Route>
 
-
       </Routes>
     </div>
   )

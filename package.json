@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "server": "tsx src/server/server.js",
-    "client": "vite"
+    "client": "vite --host"
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
