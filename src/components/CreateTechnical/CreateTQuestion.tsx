@@ -1,6 +1,8 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BackButton from "../BackButton/BackButton";
+
 // question: { type: String, required: true },
 // answer: { type: String, required: true },
 // category: { type: String, required: true },
@@ -87,14 +89,19 @@ const CreateTechnicalQuestion: React.FC = () => {
                     alignItems: "center"
                 }}>
                     <h2>
-                        create technical question flashcards!
+                        Answer technical questions
                     </h2>  
                 </div>
                 <div style={{
                     display: "flex",
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: '20px'
+                    gap: '20px',
+                    width: '100%',
+                    height: '600px',
+                    overflowY: 'scroll',
+                    padding: '20px',
+                    boxSizing: 'border-box'
                 }}>
                     {boxes.map((questions, index) => {
                         console.log("index", questions)
@@ -118,6 +125,9 @@ const CreateTechnicalQuestion: React.FC = () => {
                     )
                     })}
                      </div>
+                </div>
+                <div>
+                    {<BackButton />}
                 </div>
             </div>
     )

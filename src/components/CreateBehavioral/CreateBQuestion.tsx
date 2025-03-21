@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BackButton from "../BackButton/BackButton";
 
 interface Question {
     _id: string;
@@ -42,7 +43,7 @@ const CreateBehavioralQuestion: React.FC = () => {
         }, [])
 
     
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < questions.length; i += 1) {
         if (questions[i]) {
             boxes.push(questions[i])
         }
@@ -77,14 +78,19 @@ const CreateBehavioralQuestion: React.FC = () => {
                     alignItems: "center"
                 }}>
                     <h2>
-                        create behavioral question flashcards!
+                        Answer behavioral questions
                     </h2>  
                 </div>
                 <div style={{
                     display: "flex",
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: '20px'
+                    gap: '20px',
+                    width: '100%',
+                    height: '600px',
+                    overflowY: 'scroll',
+                    padding: '20px',
+                    boxSizing: 'border-box'
                 }}>
                     {boxes.map((questions, index) => {
                         console.log("index", questions)
@@ -107,9 +113,12 @@ const CreateBehavioralQuestion: React.FC = () => {
                         </div>
                     )
                     })}
-                     </div>
                 </div>
             </div>
+                <div>
+                    {<BackButton />}
+                </div>
+        </div>
     )
 }
 

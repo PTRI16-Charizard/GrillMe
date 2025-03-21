@@ -25,7 +25,7 @@ import { useNavigate } from "react-router";
         borderRadius: '8px'}}>
           <div>
           <h2>
-          practice flashcards!
+          Practice your answers
           </h2>  
       </div>
       <div style={{ 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import BackButton from "../BackButton/BackButton";
 
 const PracticeTechnicalQ: React.FC = () => {
     // const { id } = useParams();
@@ -96,6 +97,9 @@ const PracticeTechnicalQ: React.FC = () => {
                                 </div>
                             </div>
                         </div>
+                    <div>
+                    {<BackButton />}
+                    </div>
                 </div>
         
             )

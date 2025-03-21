@@ -2,6 +2,7 @@ import { text } from "express";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MyForm from "../SubmitAnswer/SubmitAnswer";
+import BackButton from "../BackButton/BackButton";
 
 interface BehavioralFlashcardProps {
     id: string;
@@ -93,6 +94,9 @@ const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
                             />
                             
                     </div>
+                </div>
+                <div>
+                    {<BackButton />}
                 </div>
         </div>
 

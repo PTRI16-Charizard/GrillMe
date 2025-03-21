@@ -63,7 +63,8 @@ function MyForm({ apiUrl, question, category, user, preset }: MyFormProps) {
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Enter your answer"
+        placeholder={message === 'Answer submitted successfully!' ? '' : 'Enter your answer'}
+        disabled={message === 'Answer submitted successfully!'}
         style={{
           color: "pastelblack",
           textAlign: "center",
@@ -76,10 +77,15 @@ function MyForm({ apiUrl, question, category, user, preset }: MyFormProps) {
           boxShadow: "5000px 4px 20px 0px rgba(0, 0, 0, 0.05)",
         }}
       />
-      <button type="submit" disabled={loading} style={{backgroundColor: "blue", color:"white"}}>
+      {message === 'Answer submitted successfully!' ? (
+        <p>{message}</p>
+      ) : (
+      <button type="submit" disabled={loading} style={{backgroundColor: "lightblue", color:"white"}}>
         {loading ? "Submitting..." : "Submit"}
       </button>
-      {message && <p>{message}</p>}
+      )
+      }
+      {/* {message && <p>{message}</p>} */}
     </form>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BackButton from "../BackButton/BackButton";
 
 interface Question {
     _id: string;
@@ -91,7 +92,12 @@ const PracticeBehavioralQuestion: React.FC = () => {
                     display: "flex",
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: '20px'
+                    gap: '20px',
+                    width: '100%',
+                    height: '600px',
+                    overflowY: 'scroll',
+                    padding: '20px',
+                    boxSizing: 'border-box'
                 }}>
                     {boxes.map((questions, index) => {
                         console.log("index", questions)
@@ -115,6 +121,9 @@ const PracticeBehavioralQuestion: React.FC = () => {
                     )
                     })}
                      </div>
+                </div>
+                <div>
+                    {<BackButton />}
                 </div>
             </div>
     )

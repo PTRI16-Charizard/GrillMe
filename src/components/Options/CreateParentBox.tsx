@@ -21,7 +21,7 @@ const CreateQuestionsBox: React.FC = () => {
         borderRadius: '8px'}}>
           <div>
           <h2>
-          create flashcards!
+          Answer sample questions
           </h2>  
       </div>
       <div style={{ 
