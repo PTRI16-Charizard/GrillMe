@@ -18,9 +18,8 @@ const PracticeBehavioralQuestion: React.FC = () => {
         const boxes: string[] = [];
         const navigate = useNavigate();
         
-        const HandleBehavioralClick = (id: String) => {
-            console.log('iD')
-            navigate('/practiceYourBehavioralQs')
+        const handleBehavioralClick = (id: String) => {
+            navigate(`/practiceYourBehavioralQs/${id}`)
         }
         useEffect(() => {
             const fetchQuestions = async () => {
@@ -31,13 +30,13 @@ const PracticeBehavioralQuestion: React.FC = () => {
                     console.log('this is data', data)
                     sessionStorage.setItem("AnsweredBehavioralQs", JSON.stringify(data));
 
-                    for (let i = 0; i < data.length; i += 1) {
-                        for (const key in data[i]) {
-                            if (data[i][key] === params.id) {
-                                setTechQ(data[i].question)
-                            }
-                        }
-                    }
+                    // for (let i = 0; i < data.length; i += 1) {
+                    //     for (const key in data[i]) {
+                    //         if (data[i][key] === params.id) {
+                    //             setTechQ(data[i].question)
+                    //         }
+                    //     }
+                    // }
                 } catch(err) {
                     console.log('error fetching', err);
                 }
@@ -85,7 +84,7 @@ const PracticeBehavioralQuestion: React.FC = () => {
                     alignItems: "center"
                 }}>
                     <h2>
-                        create behavioral question flashcards!
+                        Select a question to practice
                     </h2>  
                 </div>
                 <div style={{
@@ -100,7 +99,7 @@ const PracticeBehavioralQuestion: React.FC = () => {
                         console.log('questionID', id)
                         return  (
                         <div>
-                            <button onClick={() => HandleBehavioralClick(id)} key={index} style={{
+                            <button onClick={() => handleBehavioralClick(id)} key={index} style={{
                                     width: '600px', 
                                     height: '100px', 
                                     backgroundColor: 'cream', 

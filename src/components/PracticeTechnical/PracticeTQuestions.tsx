@@ -17,7 +17,7 @@ interface Question {
 const PracticeTechnicalQuestion: React.FC = () => {
         const navigate = useNavigate()
         const handleTechClick = (id: string) => {
-            navigate("/practiceYourTechnicalQs")
+            navigate(`/practiceYourTechnicalQs/${id}`)
             // display answer on click
 
            
@@ -90,7 +90,7 @@ const PracticeTechnicalQuestion: React.FC = () => {
                     alignItems: "center"
                 }}>
                     <h2>
-                        create technical question flashcards!
+                        Select a question to practice
                     </h2>  
                 </div>
                 <div style={{

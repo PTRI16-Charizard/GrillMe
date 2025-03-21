@@ -25,8 +25,8 @@ function App() {
         <Route path="/practiceTechnical" element={<PracticeTechnicalQuestion/>}></Route>
         <Route path="/createTechnicalFlashcards/:id" element={<TechnicalFlashcard/>}></Route>
         <Route path="/createBehavioralFlashcards/:id" element={<BehavioralFlashcard/>}></Route>
-        <Route path="/practiceYourTechnicalQs" element={<PracticeTechnicalQ/>}></Route>
-        <Route path="/practiceYourBehavioralQs" element={<PracticeBehavioralQ/>}></Route>
+        <Route path="/practiceYourTechnicalQs/:id" element={<PracticeTechnicalQ/>}></Route>
+        <Route path="/practiceYourBehavioralQs/:id" element={<PracticeBehavioralQ/>}></Route>
 
 
       </Routes>
