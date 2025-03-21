@@ -55,7 +55,7 @@ const PracticeTechnicalQuestion: React.FC = () => {
         }, [])
 
     
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < questions.length; i += 1) {
         if (questions[i]) {
             boxes.push(questions[i])
         }
