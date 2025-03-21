@@ -46,7 +46,7 @@ router.get('/presets/:category/:userId', async (req: Request, res: Response): Pr
       { user: userId, preset: true },
       'question'
     );
-    console.log('answeredPresets: ', answeredPresets);
+    // console.log('answeredPresets: ', answeredPresets);
 
     const answeredPresetsSet = new Set(answeredPresets.map(element => element.question));
     // console.log('answeredPresetsSet', answeredPresetsSet);
@@ -55,9 +55,10 @@ router.get('/presets/:category/:userId', async (req: Request, res: Response): Pr
     const presetQuestions = await Flashcard.find({
       category,
       preset: true,
+      user: { $exists: false },
       question: { $nin: [...answeredPresetsSet] }
     })
-    return res.json(presetQuestions);
+    return res.status(200).json(presetQuestions);
   } catch (error) {
     return res.status(500).json({ message: 'Error fetching preset questions', error: error})
   }
@@ -95,7 +96,7 @@ router.get('/answered/:category/:userId', async (req: Request, res: Response): P
       category,
       user: userId
     })
-    return res.json(answeredQuestions);
+    return res.status(200).json(answeredQuestions);
   } catch (error) {
     return res.status(500).json({ message: 'Error fetching answered questions', error: error})
   }
@@ -156,7 +157,7 @@ router.get('/:userId/random', async (req: Request, res: Response): Promise<any> 
   try {
     const flashcards = await Flashcard.find({ user: req.params.userId});
     const randomCard = flashcards[Math.floor(Math.random() * flashcards.length)];
-    return res.json(randomCard);
+    return res.status(200).json(randomCard);
   } catch (error) {
     return res.status(500).json({ message: 'Error fetching random flashcard', error: error})
   }
