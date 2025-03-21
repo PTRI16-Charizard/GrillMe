@@ -88,6 +88,7 @@ router.post('/answer', async (req: Request, res: Response): Promise<any> => {
 /*  My Collection */
 
 // Get answered questions
+
 router.get('/answered/:category/:userId', async (req: Request, res: Response): Promise<any> =>{
   try {
     const { category, userId } = req.params;
