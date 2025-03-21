@@ -2,6 +2,7 @@
 // import { useState } from "react";
 import { useNavigate } from "react-router";
 import { GoogleLogin } from "@react-oauth/google";
+import logo from "../../assets/logo.png"
 // interface LoginState {
 //     isLoggedIn: boolean;
 // }
@@ -41,8 +42,21 @@ const Login: React.FC = () => {
   }
 
   return (
-    <div style={{fontFamily: "papyrus"}}>
-      <h1>Hello!</h1>
+    <div style={{
+      fontFamily: "papyrus",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+    }}>
+      <img 
+        src={logo} 
+        alt="Logo"
+        style={{
+          width: "300px",
+          height:"auto",
+        }}
+      />
       <GoogleLogin
         onSuccess={handleSuccess}
         onError={() => {
