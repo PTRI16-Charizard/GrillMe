@@ -1,5 +1,4 @@
 
-import { useState } from "react";
 import { useNavigate } from "react-router";
 
 const CreateQuestionsBox: React.FC = () => {
