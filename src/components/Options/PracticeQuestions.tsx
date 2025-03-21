@@ -34,12 +34,27 @@ import { useNavigate } from "react-router";
       <div style={{
         paddingTop: '50px'
         }}>
-        <button onClick={HandlePracticeBehavioral}>Behavioral</button>
+        <button 
+          onClick={HandlePracticeBehavioral}
+          style={{
+            // border: 'solid 1px black'
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.border = 'solid 1px black'}
+          onMouseLeave={(e) => e.currentTarget.style.border = ''}
+        >
+          Behavioral
+        </button>
       </div>
       <div style={{
         paddingTop: '50px'
       }}>
-        <button onClick={HandlePracticeTechnical}>Technical</button>
+        <button 
+          onClick={HandlePracticeTechnical}
+          onMouseEnter={(e) => e.currentTarget.style.border = 'solid 1px black'}
+          onMouseLeave={(e) => e.currentTarget.style.border = ''}
+          >
+            Technical
+          </button>
       </div>
       </div>
       </div>

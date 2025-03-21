@@ -30,12 +30,24 @@ const CreateQuestionsBox: React.FC = () => {
       <div style={{
         paddingTop: '50px'
         }}>
-        <button onClick={HandleCreateBehavioral}>Behavioral</button>
+        <button 
+          onClick={HandleCreateBehavioral}
+          onMouseEnter={(e) => e.currentTarget.style.border = 'solid 1px black'}
+          onMouseLeave={(e) => e.currentTarget.style.border = ''}
+        >
+          Behavioral
+        </button>
       </div>
       <div style={{
         paddingTop: '50px'
       }}>
-        <button onClick={HandleCreateTechnical}>Technical</button>
+        <button 
+          onClick={HandleCreateTechnical}
+          onMouseEnter={(e) => e.currentTarget.style.border = 'solid 1px black'}
+          onMouseLeave={(e) => e.currentTarget.style.border = ''}
+        >
+          Technical
+        </button>
       </div>
       </div>
       </div>

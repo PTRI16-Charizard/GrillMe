@@ -17,6 +17,8 @@ const BackButton: React.FC = () => {
         fontSize: "medium",
         marginTop: "20px",
       }}
+      onMouseEnter={(e) => e.currentTarget.style.border = 'solid 1px black'}
+      onMouseLeave={(e) => e.currentTarget.style.border = ''}
     >
       Back
     </button>
