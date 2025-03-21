@@ -67,7 +67,7 @@ const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <form
+                    <div
                     style={{paddingTop: '50px'}}>
                         <label style={{fontSize: 'large' ,fontFamily: "papyrus", display: 'center'}}>
                             {behavioralQ}
@@ -84,8 +84,15 @@ const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
                             boxShadow: "5000px 4px 20px 0px rgba(0, 0, 0, 0.05)",
                         }}
                         /> */}
-                        <MyForm apiUrl="http://localhost:3000/api/answer"/>
-                    </form>
+                        <MyForm 
+                            apiUrl="http://localhost:3000/api/answer"
+                            question={behavioralQ}
+                            category="behavioral"
+                            user={params.id}
+                            preset={true} 
+                            />
+                            
+                    </div>
                 </div>
         </div>
 

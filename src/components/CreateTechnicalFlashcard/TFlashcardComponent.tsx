@@ -1,6 +1,7 @@
 import { text } from "express";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import MyForm from "../SubmitAnswer/SubmitAnswer";
 
 interface TechnicalFlashcardProps {
     id: string;
@@ -56,11 +57,12 @@ const TechnicalFlashcard: React.FC<TechnicalFlashcardProps> = () => {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <form style={{paddingTop: '50px'}}>
+                    <div
+                    style={{paddingTop: '50px'}}></div>
                         <label style={{fontSize: 'large', fontFamily: "papyrus", display: 'center'}}>
                             {techQ}
                         </label>
-                        <input type="text" style={{
+                        {/* <input type="text" style={{
                             color: "pastelblack",
                             textAlign: "center",
                             fontSize: 'large',
@@ -70,10 +72,16 @@ const TechnicalFlashcard: React.FC<TechnicalFlashcardProps> = () => {
                             height: '150px',
                             transition: "0.3s all",
                             boxShadow: "5000px 4px 20px 0px rgba(0, 0, 0, 0.05)",
-                        }}
+                            />
+                        }} */}
+                        <MyForm 
+                            apiUrl="http://localhost:3000/api/answer"
+                            question={techQ}
+                            category="technical"
+                            user={params.id}
+                            preset={true} 
+                            />
                     
-                          />
-                    </form>
                 </div>
         </div>
 

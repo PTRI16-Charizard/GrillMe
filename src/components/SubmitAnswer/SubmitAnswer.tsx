@@ -1,23 +1,34 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 
 interface MyFormProps {
-  apiUrl: string; // API endpoint for submitting data
+  apiUrl: string;
+  question: string;
+  category: string;
+  user: string | undefined;
+  preset: boolean;
 }
 
-function MyForm({ apiUrl }: MyFormProps) {
+function MyForm({ apiUrl, question, category, user, preset }: MyFormProps) {
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const params = useParams(); // Get dynamic route params
-
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setLoading(true);
-    setMessage("");
+  
+    if (!inputValue.trim()) {  // check for empty answer
+      setMessage("Answer cannot be empty!");
+      return;
+    }
 
-    const data = { text: inputValue, id: params.id }; // Data to send
+    const data = { 
+      question, 
+      answer: inputValue, 
+      category, 
+      user, 
+      preset 
+    };
+    // console.log("Submitting data:", data);
 
     try {
       const response = await fetch(apiUrl, {
@@ -28,18 +39,22 @@ function MyForm({ apiUrl }: MyFormProps) {
         body: JSON.stringify(data),
       });
 
+    //   console.log("Response status:", response.status); 
+    //   const responseData = await response.json();
+    //   console.log("Server response:", responseData); 
+
       if (response.ok) {
-        setMessage("Data submitted successfully!");
+        setMessage("Answer submitted successfully!");
         setInputValue(""); // Clear input
       } else {
-        setMessage("Failed to submit data.");
+        setMessage("Failed to submit answer.");
       }
     } catch (error) {
-      console.error("Error submitting data:", error);
+      console.error("Error submitting answer:", error);
       setMessage("An error occurred.");
     }
 
-    setLoading(false);
+    setLoading(true);
   };
 
   return (
@@ -48,20 +63,20 @@ function MyForm({ apiUrl }: MyFormProps) {
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Enter your text"
+        placeholder="Enter your answer"
         style={{
           color: "pastelblack",
           textAlign: "center",
           fontSize: "large",
           justifyContent: "center",
-          margin: "50px",
+          margin: "20px",
           width: "600px",
           height: "150px",
           transition: "0.3s all",
           boxShadow: "5000px 4px 20px 0px rgba(0, 0, 0, 0.05)",
         }}
       />
-      <button type="submit" disabled={loading}>
+      <button type="submit" disabled={loading} style={{backgroundColor: "blue", color:"white"}}>
         {loading ? "Submitting..." : "Submit"}
       </button>
       {message && <p>{message}</p>}
