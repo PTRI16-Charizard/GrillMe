@@ -2,20 +2,26 @@ import { text } from "express";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-interface TechnicalFlashcardProps {
+interface BehavioralFlashcardProps {
     id: string;
 }
-const TechnicalFlashcard: React.FC<TechnicalFlashcardProps> = () => {
+interface Data {
+    id: string;
+    question: string;
+    answer: string;
+}
+const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
      let params = useParams();
     params.id;
     console.log('this is id', params.id)
 
-    const [techQ, setTechQ] = useState('');
+    const [behavioralQ, setBehavioralQ] = useState('');
 
     useEffect(() => {
-        const fetchTechnicalQ = async () => {
+        const fetchBehavioralQ = async () => {
             try {
-                let data = sessionStorage.getItem("questionsObj");
+                let data = sessionStorage.getItem("BehavioralQObject");
+                // if (!data) return;
                 console.log('this is session stored data', data);
                 data = JSON.parse(data);
                 console.log('rejson data', data)
@@ -23,7 +29,8 @@ const TechnicalFlashcard: React.FC<TechnicalFlashcardProps> = () => {
                 for (let i = 0; i < data.length; i += 1) {
                     for (const key in data[i]) {
                         if (data[i][key] === params.id) {
-                            setTechQ(data[i].question)
+                            setBehavioralQ(data[i].question)
+                            console.log("this is behavioralq", behavioralQ)
                         }
                     }
                 }
@@ -33,14 +40,16 @@ const TechnicalFlashcard: React.FC<TechnicalFlashcardProps> = () => {
         }
     
         //     setQuestions(data)
-        fetchTechnicalQ();
+        fetchBehavioralQ();
         // console.log('question', techQ);
     }, [params.id])
 
 
     useEffect(() => {
-        console.log("question", techQ);
-    }, [techQ]);
+        console.log("question", behavioralQ);
+    }, [behavioralQ]);
+
+
     return (
         <div style={{                            
             fontFamily: "papyrus",
@@ -57,13 +66,13 @@ const TechnicalFlashcard: React.FC<TechnicalFlashcardProps> = () => {
                     alignItems: "center"
                 }}>
                     <form style={{paddingTop: '50px'}}>
-                        <label style={{fontSize: 'large', fontFamily: "papyrus", display: 'center'}}>
-                            {techQ}
+                        <label style={{fontSize: 'large' ,fontFamily: "papyrus", display: 'center'}}>
+                            {behavioralQ}
                         </label>
                         <input type="text" style={{
                             color: "pastelblack",
                             textAlign: "center",
-                            fontSize: 'large',
+                             fontSize: 'large',
                             justifyContent: "center",
                             margin: '50px',
                             width: '600px',
@@ -79,7 +88,6 @@ const TechnicalFlashcard: React.FC<TechnicalFlashcardProps> = () => {
 
     )
 
-
 }
 
-export default TechnicalFlashcard;
+export default BehavioralFlashcard;

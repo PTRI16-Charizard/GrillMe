@@ -7,6 +7,7 @@ import CreateTechnicalQuestion from './components/CreateTechnical/CreateTQuestio
 import PracticeBehavioralQuestion from './components/PracticeBehavioral/PracticeBQuestions';
 import PracticeTechnicalQuestion from './components/PracticeTechnical/PracticeTQuestions';
 import TechnicalFlashcard from './components/CreateTechnicalFlashcard/TFlashcardComponent';
+import BehavioralFlashcard from './components/CreateBFlashcard/BFlashcardComponent';
 
 function App() {
 
@@ -21,6 +22,9 @@ function App() {
         <Route path="/practiceBehavioral" element={<PracticeBehavioralQuestion/>}></Route>
         <Route path="/practiceTechnical" element={<PracticeTechnicalQuestion/>}></Route>
         <Route path="/createTechnicalFlashcards/:id" element={<TechnicalFlashcard/>}></Route>
+        <Route path="/createBehavioralFlashcards/:id" element={<BehavioralFlashcard/>}></Route>
+
+
       </Routes>
     </div>
   )

@@ -41,7 +41,7 @@ const Login: React.FC = () => {
   }
 
   return (
-    <div>
+    <div style={{fontFamily: "papyrus"}}>
       <h1>Hello!</h1>
       <GoogleLogin
         onSuccess={handleSuccess}

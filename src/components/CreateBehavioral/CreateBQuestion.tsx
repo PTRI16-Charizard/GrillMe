@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+interface Question {
+    _id: string;
+    question: string;
+    answer: string;
+    category: string;
+}
 
 const CreateBehavioralQuestion: React.FC = () => {
         // useeffect to fetch
@@ -7,16 +14,21 @@ const CreateBehavioralQuestion: React.FC = () => {
         // only fetch 5 at a time / fetching all but only displaying 5 at a time
         // this is where we will be storing result of fetching questions
         // setQuestions React.Dispatch<React.SetStateAction<string[]>> 
-        const [questions, setQuestions] = useState<[]>([]);
+        const [questions, setQuestions] = useState<[Question]>([]);
         const boxes: string[] = [];
-
+        const navigate = useNavigate();
+        
+        const HandleBehavioralClick = (id: string) => {
+            navigate(`/createBehavioralFlashcards/${id}`)
+        }
         useEffect(() => {
             const fetchQuestions = async () => {
                 try {
-                    const response = await fetch(`http://localhost:3000/api/${localStorage.getItem('ID')}`)
+                    const response = await fetch(`http://localhost:3000/api/presets/behavioral/${localStorage.getItem('ID')}`)
                     const data = await response.json();
                     setQuestions(data);
                     console.log('this is data', data)
+                    sessionStorage.setItem("BehavioralQObject", JSON.stringify(data));
 
                 } catch(err) {
                     console.log('error fetching', err);
@@ -37,9 +49,8 @@ const CreateBehavioralQuestion: React.FC = () => {
     }
 
     console.log(boxes);
-
     return (
-        <div>
+        <div style={{fontFamily: "papyrus"}}>
             <div style={{
                 display: "flex",
                 width: '800px', 
@@ -65,8 +76,8 @@ const CreateBehavioralQuestion: React.FC = () => {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <h2 style={{fontFamily: "fantasy"}}>
-                        create technical question flashcards!
+                    <h2>
+                        create behavioral question flashcards!
                     </h2>  
                 </div>
                 <div style={{
@@ -77,10 +88,11 @@ const CreateBehavioralQuestion: React.FC = () => {
                 }}>
                     {boxes.map((questions, index) => {
                         console.log("index", questions)
-
+                        const id = questions._id;
+                        console.log('questionID', id)
                         return  (
                         <div>
-                         <div key={index} style={{
+                            <button onClick={() => HandleBehavioralClick(id)} key={index} style={{
                                     width: '600px', 
                                     height: '100px', 
                                     backgroundColor: 'cream', 
@@ -89,9 +101,9 @@ const CreateBehavioralQuestion: React.FC = () => {
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: 'center'
-                        }}>  
-                        <p>{questions.question}</p>
-                        </div>
+                            }}>  
+                                <p style={{fontFamily: "papyrus"}}>{questions.question}</p>
+                            </button>
                         </div>
                     )
                     })}
@@ -100,7 +112,6 @@ const CreateBehavioralQuestion: React.FC = () => {
             </div>
     )
 }
-
 
 
 // fetch reequest to localhost3000/api/ to get all flashcards

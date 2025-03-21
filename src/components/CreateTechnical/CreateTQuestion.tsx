@@ -30,7 +30,7 @@ const CreateTechnicalQuestion: React.FC = () => {
         useEffect(() => {
             const fetchQuestions = async () => {
                 try {
-                    const response = await fetch(`http://localhost:3000/api/${localStorage.getItem('ID')}`)
+                    const response = await fetch(`http://localhost:3000/api/presets/technical/${localStorage.getItem('ID')}`)
                     const data = await response.json();
                     setQuestions(data);
                     // save in session storage
@@ -60,7 +60,7 @@ const CreateTechnicalQuestion: React.FC = () => {
     console.log(boxes);
 
     return (
-        <div>
+        <div style={{fontFamily: "papyrus"}}>
             <div style={{
                 display: "flex",
                 width: '800px', 
@@ -86,7 +86,7 @@ const CreateTechnicalQuestion: React.FC = () => {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <h2 style={{fontFamily: "fantasy"}}>
+                    <h2>
                         create technical question flashcards!
                     </h2>  
                 </div>

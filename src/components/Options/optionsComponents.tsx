@@ -6,7 +6,7 @@ import PracticeQuestionsBox from "./PracticeQuestions";
 // Answer Questions box (with behavioral/technical button)
 const AnswerQuestions: React.FC = () => {
   return (
-    <div style={{ fontFamily: "fantasy" }}>
+    <div style={{ fontFamily: "Papyrus" }}>
       <div>
         <h1>What would you like to do today?</h1>
       </div>

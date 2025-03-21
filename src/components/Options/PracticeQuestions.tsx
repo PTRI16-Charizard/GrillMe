@@ -17,7 +17,7 @@ import { useNavigate } from "react-router";
 
     return (
       <div style={{
-        fontFamily: "fantasy", 
+        fontFamily: "papyrus", 
         width: '400px', 
         height: '200px', 
         backgroundColor: 'white',
