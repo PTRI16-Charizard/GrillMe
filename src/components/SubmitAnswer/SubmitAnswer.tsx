@@ -4,7 +4,7 @@ interface MyFormProps {
   apiUrl: string;
   question: string;
   category: string;
-  user: string | undefined;
+  user: string | null;
   preset: boolean;
 }
 
@@ -28,7 +28,7 @@ function MyForm({ apiUrl, question, category, user, preset }: MyFormProps) {
       user, 
       preset 
     };
-    // console.log("Submitting data:", data);
+    console.log("Submitting data:", data);
 
     try {
       const response = await fetch(apiUrl, {

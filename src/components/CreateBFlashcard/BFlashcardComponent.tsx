@@ -17,6 +17,8 @@ const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
     params.id;
     console.log('this is id', params.id)
 
+    let userId = localStorage.getItem("ID");
+
     const [behavioralQ, setBehavioralQ] = useState('');
 
     useEffect(() => {
@@ -89,7 +91,7 @@ const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
                             apiUrl="http://localhost:3000/api/answer"
                             question={behavioralQ}
                             category="behavioral"
-                            user={params.id}
+                            user={userId}
                             preset={true} 
                             />
                             
