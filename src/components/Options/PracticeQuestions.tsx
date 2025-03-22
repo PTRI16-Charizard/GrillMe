@@ -32,12 +32,13 @@ import { useNavigate } from "react-router";
       display: "flex", 
       justifyContent: "space-around" }}>
       <div style={{
-        paddingTop: '50px'
+        paddingTop: '30px'
         }}>
         <button 
           onClick={HandlePracticeBehavioral}
           style={{
-            // border: 'solid 1px black'
+            width: '120px',
+            height:'60px'
           }}
           onMouseEnter={(e) => e.currentTarget.style.border = 'solid 1px black'}
           onMouseLeave={(e) => e.currentTarget.style.border = ''}
@@ -46,9 +47,13 @@ import { useNavigate } from "react-router";
         </button>
       </div>
       <div style={{
-        paddingTop: '50px'
+        paddingTop: '30px'
       }}>
         <button 
+         style={{
+          width: '120px',
+          height:'60px'
+        }}
           onClick={HandlePracticeTechnical}
           onMouseEnter={(e) => e.currentTarget.style.border = 'solid 1px black'}
           onMouseLeave={(e) => e.currentTarget.style.border = ''}

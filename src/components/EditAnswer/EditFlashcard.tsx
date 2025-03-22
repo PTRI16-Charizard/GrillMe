@@ -4,29 +4,22 @@ import { useParams } from "react-router-dom";
 import MyForm from "../SubmitAnswer/SubmitAnswer";
 import BackButton from "../BackButton/BackButton";
 
-interface BehavioralFlashcardProps {
+interface TechnicalFlashcardProps {
     id?: string;
 }
-interface Data {
-    id: string;
-    question: string;
-    answer: string;
-}
-const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
+const TechnicalFlashcard: React.FC<TechnicalFlashcardProps> = () => {
      let params = useParams();
     params.id;
     console.log('this is id', params.id)
 
     let userId = localStorage.getItem("ID");
 
-    const [behavioralQ, setBehavioralQ] = useState('');
+    const [techQ, setTechQ] = useState('');
 
     useEffect(() => {
-        
-        const fetchBehavioralQ = async () => {
+        const fetchTechnicalQ = async () => {
             try {
-                let data = sessionStorage.getItem("BehavioralQObject");
-                // if (!data) return;
+                let data = sessionStorage.getItem("questionsObj");
                 console.log('this is session stored data', data);
                 data = JSON.parse(data);
                 console.log('rejson data', data)
@@ -34,8 +27,7 @@ const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
                 for (let i = 0; i < data.length; i += 1) {
                     for (const key in data[i]) {
                         if (data[i][key] === params.id) {
-                            setBehavioralQ(data[i].question)
-                            console.log("this is behavioralq", behavioralQ)
+                            setTechQ(data[i].question)
                         }
                     }
                 }
@@ -45,16 +37,14 @@ const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
         }
     
         //     setQuestions(data)
-        fetchBehavioralQ();
+        fetchTechnicalQ();
         // console.log('question', techQ);
     }, [params.id])
 
 
     useEffect(() => {
-        console.log("question", behavioralQ);
-    }, [behavioralQ]);
-
-
+        console.log("question", techQ);
+    }, [techQ]);
     return (
         <div style={{                            
             fontFamily: "papyrus",
@@ -71,9 +61,9 @@ const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
                     alignItems: "center"
                 }}>
                     <div
-                    style={{paddingTop: '50px'}}>
-                        <label style={{fontSize: 'large' ,fontFamily: "papyrus", display: 'center'}}>
-                            {behavioralQ}
+                    style={{paddingTop: '50px'}}></div>
+                        <label style={{fontSize: 'large', fontFamily: "papyrus", display: 'center'}}>
+                            {techQ}
                         </label>
                         {/* <input type="text" style={{
                             color: "pastelblack",
@@ -85,25 +75,22 @@ const BehavioralFlashcard: React.FC<BehavioralFlashcardProps> = () => {
                             height: '150px',
                             transition: "0.3s all",
                             boxShadow: "5000px 4px 20px 0px rgba(0, 0, 0, 0.05)",
-                        }}
-                        /> */}
+                            />
+                        }} */}
                         <MyForm 
                             apiUrl="http://localhost:3000/api/answer"
-                            question={behavioralQ}
-                            category="behavioral"
+                            question={techQ}
+                            category="technical"
                             user={userId}
                             preset={true} 
                             />
-                            
-                    </div>
+                    
                 </div>
                 <div>
                     {<BackButton />}
                 </div>
         </div>
-
     )
-
 }
 
-export default BehavioralFlashcard;
+export default EditFlashcard;

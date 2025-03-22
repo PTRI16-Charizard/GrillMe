@@ -1,45 +1,50 @@
-
 import { useNavigate } from "react-router";
 
-const CreateQuestionsBox: React.FC = () => {
+const CreateCustomQuestionsBox: React.FC = () => {
     const navigate = useNavigate();
   
-    const HandleCreateTechnical = () => {
-      navigate('/createTechnical');  
-    }
+    // const HandleCreateTechnical = () => {
+    //   navigate('/createTechnical');  
+    // }
   
-    const HandleCreateBehavioral = () => {
-      navigate('/createBehavioral');
+    // const HandleCreateBehavioral = () => {
+    //   navigate('/createBehavioral');
+    // }
+    const handleCustom = (): void => {
+        navigate('/createCustomQ');
     }
 
     return (
       <div style={{
+        display:"flex",
+        cursor: 'pointer',
         width: '400px', 
-        height: '200px', 
-        backgroundColor: 'white', 
+        height: '90px', 
+        justifyContent:"center",
+        backgroundColor: '#f9f9f9', 
         border: 'solid', 
         borderRadius: '8px'}}>
-          <div>
-          <h2>
-          Answer sample questions
-          </h2>  
-      </div>
-      <div style={{ 
+          <div onClick={handleCustom} style={{paddingBottom: '0px', marginTop: '6px', backgroundColor: '#f9f9f9'}}>
+            <h2 >
+            Create custom question
+            </h2>
+        </div>
+      {/* <div style={{ 
         display: "flex", 
         justifyContent: "space-around" }}>
       <div style={{
         paddingTop: '30px'
-        }}>
-        <button 
+        }}> */}
+        {/* <button 
          style={{
           width: '120px',
           height:'60px'
         }}
-          onClick={HandleCreateBehavioral}
+          onClick={handleCustom}
           onMouseEnter={(e) => e.currentTarget.style.border = 'solid 1px black'}
           onMouseLeave={(e) => e.currentTarget.style.border = ''}
-        >
-          Behavioral
+        > */}
+          {/* Behavioral
         </button>
       </div>
       <div style={{
@@ -55,11 +60,11 @@ const CreateQuestionsBox: React.FC = () => {
           onMouseLeave={(e) => e.currentTarget.style.border = ''}
         >
           Technical
-        </button>
-      </div>
-      </div>
+        </button> */}
+      {/* </div> */}
+      {/* // </div> */}
       </div>
     )
   }
   
-  export default CreateQuestionsBox;
+  export default CreateCustomQuestionsBox;

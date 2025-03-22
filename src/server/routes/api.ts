@@ -168,12 +168,12 @@ router.get('/:userId/random', async (req: Request, res: Response): Promise<any> 
 // Create a custom flashcard
 router.post('/create', async (req: Request, res: Response): Promise<any> => {
   try {
-    const { question, answer, category, userId } = req.body;
+    const { question, answer, category, userId} = req.body;
     const newFlashcard = new Flashcard({
       question: question,
       answer: answer,
       category: category,
-      user: userId,
+      user: userId
     });
 
     const savedFlashcard = await newFlashcard.save();

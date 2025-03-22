@@ -10,6 +10,7 @@ import TechnicalFlashcard from './components/CreateTechnicalFlashcard/TFlashcard
 import BehavioralFlashcard from './components/CreateBFlashcard/BFlashcardComponent';
 import PracticeTechnicalQ from './components/PracticeTechnicalQs/PracticeTQs';
 import PracticeBehavioralQ from './components/PracticeBehavioralQs/PracticeBQs';
+import CustomFlashcard from './components/CreateCustom/CreateCustom';
 
 function App() {
 
@@ -27,7 +28,8 @@ function App() {
         <Route path="/createBehavioralFlashcards/:id" element={<BehavioralFlashcard/>}></Route>
         <Route path="/practiceYourTechnicalQs/:id" element={<PracticeTechnicalQ/>}></Route>
         <Route path="/practiceYourBehavioralQs/:id" element={<PracticeBehavioralQ/>}></Route>
-
+        <Route path="/createCustomQ" element={<CustomFlashcard/>}></Route>
+        {/* <Route path="/editAnswer/:id" element={<Edit/>}></Route> */}
       </Routes>
     </div>
   )

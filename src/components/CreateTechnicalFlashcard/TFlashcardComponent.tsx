@@ -5,7 +5,7 @@ import MyForm from "../SubmitAnswer/SubmitAnswer";
 import BackButton from "../BackButton/BackButton";
 
 interface TechnicalFlashcardProps {
-    id: string;
+    id?: string;
 }
 const TechnicalFlashcard: React.FC<TechnicalFlashcardProps> = () => {
      let params = useParams();
@@ -90,10 +90,7 @@ const TechnicalFlashcard: React.FC<TechnicalFlashcardProps> = () => {
                     {<BackButton />}
                 </div>
         </div>
-
     )
-
-
 }
 
 export default TechnicalFlashcard;

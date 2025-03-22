@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BackButton from "../BackButton/BackButton";
+// import CustomFlashcard from "../CreateCustom/CreateCustom";
 
 interface Question {
     _id: string;
@@ -18,9 +19,26 @@ const PracticeBehavioralQuestion: React.FC = () => {
         const [questions, setQuestions] = useState<[Question]>([]);
         const boxes: string[] = [];
         const navigate = useNavigate();
+
+        const handleCustom = () => {
+            navigate('/createCustomQ');
+        }
         
         const handleBehavioralClick = (id: String) => {
             navigate(`/practiceYourBehavioralQs/${id}`)
+
+            
+        }
+        const handleDeleteClick = async(id: string) =>{
+            try {
+                await fetch(`http://localhost:3000/api/delete/${id}`, {
+                    method: 'DELETE',
+                });
+                setQuestions(questions.filter(question=> question._id !== id))
+                
+            } catch (error) {
+                console.log('Error deleting', error)
+            }
         }
         useEffect(() => {
             const fetchQuestions = async () => {
@@ -57,8 +75,8 @@ const PracticeBehavioralQuestion: React.FC = () => {
     }
 
     console.log(boxes);
-    return (
-        <div style={{fontFamily: "papyrus"}}>
+    return (        
+        <div style={{fontFamily: "papyrus"}}>            
             <div style={{
                 display: "flex",
                 width: '800px', 
@@ -86,7 +104,9 @@ const PracticeBehavioralQuestion: React.FC = () => {
                 }}>
                     <h2>
                         Select a question to practice
-                    </h2>  
+                    </h2>
+                      
+               {/* <button onClick={handleCustom}>Create custom question</button>    */}
                 </div>
                 <div style={{
                     display: "flex",
@@ -105,18 +125,41 @@ const PracticeBehavioralQuestion: React.FC = () => {
                         console.log('questionID', id)
                         return  (
                         <div>
-                            <button onClick={() => handleBehavioralClick(id)} key={index} style={{
+                            <div style={{
                                     width: '600px', 
                                     height: '100px', 
-                                    backgroundColor: 'cream', 
+                                    backgroundColor: '#f9f9f9', 
                                     border: 'solid', 
                                     borderRadius: '8px',
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: 'center'
-                            }}>  
-                                <p style={{fontFamily: "papyrus"}}>{questions.question}</p>
+                                    // display: "flex",
+                                    // alignItems: "center",
+                                    // justifyContent: 'center'
+                            }}>
+                            <div style={{display: "flex", justifyContent: 'space-between'}}>
+                                 <button onClick={() => handleBehavioralClick(id)} key={index} style={{
+                                    width: '570px', 
+                                    height: '100px', 
+                                    // backgroundColor: 'cream', 
+                                    border: 'none',
+                                    // borderRadius: '8px',
+                                    // display: "flex",
+                                    // alignItems: "center",
+                                    // justifyContent: 'center'
+                            }}
+                            >  
+                               
+                                    <p style={{alignSelf: "center", backgroundColor: "cream"}}>{questions.question}</p>
+                               
+                                
+                                {/* <p style={{fontFamily: "papyrus"}}>{questions.question}</p> */}
                             </button>
+                            <div>
+                                    {/* <button onClick={()=> handleDeleteClick(id)} style={{alignSelf: "flex-start", backgroundColor: "white"}}>X</button> */}
+                                    <button onClick={()=> handleDeleteClick(id)} style={{alignSelf: "flex-start"}}> <img src="https://img.icons8.com/?size=40&id=109470&format=png&color=000000" alt="X" /> </button>
+
+                                </div>
+                            </div>
+                            </div>
                         </div>
                     )
                     })}

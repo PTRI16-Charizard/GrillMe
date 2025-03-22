@@ -31,6 +31,22 @@ const PracticeTechnicalQuestion: React.FC = () => {
         const [questions, setQuestions] = useState<Question[]>([]);
         const boxes: string[] = [];
 
+        const handleCustom = () => {
+            navigate('/createCustomQ');
+        }
+
+        const handleDeleteClick = async(id: string) =>{
+            try {
+                await fetch(`http://localhost:3000/api/delete/${id}`, {
+                    method: 'DELETE',
+                });
+                setQuestions(questions.filter(question=> question._id !== id))
+                
+            } catch (error) {
+                console.log('Error deleting', error)
+            }
+        }
+
         useEffect(() => {
             const fetchQuestions = async () => {
                 try {
@@ -93,6 +109,7 @@ const PracticeTechnicalQuestion: React.FC = () => {
                     <h2>
                         Select a question to practice
                     </h2>  
+                    {/* <button onClick={handleCustom}>Create custom question</button>    */}
                 </div>
                 <div style={{
                     display: "flex",
@@ -111,18 +128,28 @@ const PracticeTechnicalQuestion: React.FC = () => {
                         console.log('questionID', id)
                         return  (
                         <div>
-                            <button onClick={() => handleTechClick(id)} key={index} style={{
+                            <div style={{
                                     width: '600px', 
                                     height: '100px', 
-                                    backgroundColor: 'cream', 
+                                    backgroundColor: '#f9f9f9', 
                                     border: 'solid', 
                                     borderRadius: '8px',
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: 'center'
-                            }}>  
-                                <p>{questions.question}</p>
-                            </button>
+                            }}>
+                                <div style={{display: "flex", justifyContent: 'space-between'}}>
+                                    <button onClick={() => handleTechClick(id)} key={index} style={{
+                                        width: '5700px', 
+                                        height: '100px', 
+                                        backgroundColor: 'cream', 
+                                        border: 'none', 
+                                        borderRadius: '8px'
+                                    }}>  
+                                        <p style={{alignSelf: "center"}}>{questions.question}</p>
+                                    </button>
+                                    <div>
+                                        <button onClick={()=> handleDeleteClick(id)} style={{alignSelf: "flex-start"}}> <img src="https://img.icons8.com/?size=40&id=109470&format=png&color=000000" alt="X" /> </button>
+                                    </div>            
+                                </div>
+                            </div>
                         </div>
                     )
                     })}

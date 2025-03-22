@@ -28,6 +28,10 @@ const CreateTechnicalQuestion: React.FC = () => {
         // setQuestions React.Dispatch<React.SetStateAction<string[]>> 
         const [questions, setQuestions] = useState<Question[]>([]);
         const boxes: string[] = [];
+        // const handleDeleteClick = (id: string) =>{
+        //     setQuestions(questions.filter(question=> question._id !== id))
+        // }
+
 
         useEffect(() => {
             const fetchQuestions = async () => {
@@ -119,7 +123,15 @@ const CreateTechnicalQuestion: React.FC = () => {
                                     alignItems: "center",
                                     justifyContent: 'center'
                             }}>  
-                                <p>{questions.question}</p>
+                            <div style={{display: "flex", justifyContent: 'space-between'}}>
+                                <div> 
+                                    <p style={{alignSelf: "center"}}>{questions.question}</p>
+                                </div>
+                                {/* <div>
+                                    <button onClick={()=> handleDeleteClick(id)} style={{alignSelf: "flex-start"}}>X</button>
+                                </div> */}
+                            </div>
+                            
                             </button>
                         </div>
                     )
