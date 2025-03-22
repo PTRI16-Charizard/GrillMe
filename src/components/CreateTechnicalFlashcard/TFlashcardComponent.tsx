@@ -12,6 +12,8 @@ const TechnicalFlashcard: React.FC<TechnicalFlashcardProps> = () => {
     params.id;
     console.log('this is id', params.id)
 
+    let userId = localStorage.getItem("ID");
+
     const [techQ, setTechQ] = useState('');
 
     useEffect(() => {
@@ -79,7 +81,7 @@ const TechnicalFlashcard: React.FC<TechnicalFlashcardProps> = () => {
                             apiUrl="http://localhost:3000/api/answer"
                             question={techQ}
                             category="technical"
-                            user={params.id}
+                            user={userId}
                             preset={true} 
                             />
                     
