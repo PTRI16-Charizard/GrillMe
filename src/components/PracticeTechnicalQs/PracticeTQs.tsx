@@ -94,39 +94,41 @@ const PracticeTechnicalQ: React.FC = () => {
                                 <label style={{fontSize: 'large' ,fontFamily: "papyrus", display: 'center'}}>
                                     {technicalQ}
                                 </label>
-                                {editMode ? (<div><textarea value={editAnswer} onChange={(e) => setEditAnswer(e.target.value)}></textarea> <button onClick={handleSubmit}>Submit</button></div>) : (<div style={{
-                                    display: 'flex',
-                                    color: "pastelblack",
-                                    textAlign: "left",
-                                    fontSize: 'large',
-                                    alignItems: 'center',
-                                    justifyContent: "center",
-                                    margin: '50px',
-                                    width: '600px',
-                                    height: '150px',
-                                    transition: "background-color 0.5s ease",
-                                    boxShadow: "5000px 4px 20px 0px rgba(0, 0, 0, 0.05)",
-                                    border: 'solid',
-                                    borderRadius: '8px',
-                                    backgroundColor: showAnswer ? 'white' : 'lightgreen',
-                                    cursor: 'pointer'
-                                }}
-                                onClick={() => setShowAnswer(!showAnswer)}
-                                >
-                                    {showAnswer ? <div style={{display: 'flex', flexDirection: 'column', alignItems:"center"}
-                                    }>{answer}<button onClick={handleEditClick} style={{width:"200px", height:"50px", alignItems:"center"}}>Edit Answer</button></div>
-                                     : "Click to reveal the answer"}
-                                    {/* {showAnswer ? (<div><button onClick={handleEditClick}>Edit Answer</button></div>) : ('')} */}
-                                </div>
-                                )
-                                    
-                                }
+                                {editMode ? (<div><textarea style={{width:'650px', height:'250px', overflowY:'scroll', wordBreak:"break-word", textAlign: 'left'}} value={editAnswer} onChange={(e) => setEditAnswer(e.target.value)}></textarea> <button onClick={handleSubmit}>Submit</button></div>) : (<div style={{
+                                display: 'flex',
+                                color: "pastelblack",
+                                textAlign: "left",
+                                fontSize: 'large',
+                                // alignItems: 'center',
+                                justifyContent: "center",
+                                margin: '25px',
+                                width: '650px',
+                                height: '250px',
+                                transition: "background-color 0.5s ease",
+                                boxShadow: "5000px 4px 20px 0px rgba(0, 0, 0, 0.05)",
+                                border: 'solid',
+                                borderRadius: '8px',
+                                backgroundColor: showAnswer ? 'white' : 'lightgreen',
+                                cursor: 'pointer',
+                                overflowY:"scroll",
+                            }}
+                            
+                            onClick={() => setShowAnswer(!showAnswer)}
+                            >
+                                {showAnswer ? <div style={{display: 'flex', flexDirection: 'column', alignItems:"center"}
+                                }>{answer}<button onClick={handleEditClick} style={{width:"200px", height:"50px", alignItems:"center"}}>Edit Answer</button></div>
+                                 : <h4 style={{display: 'flex', alignItems: 'center', justifyContent: 'center', overflowY: 'hidden'}}>Click to reveal the answer</h4>}
+                                {/* {showAnswer ? (<div><button onClick={handleEditClick}>Edit Answer</button></div>) : ('')} */}
                             </div>
+                            )
+                                
+                            }
                         </div>
-                    <div>
-                        {<BackButton />}
                     </div>
+                <div>
+                    {<BackButton />}
                 </div>
+            </div>
         
             )
 }

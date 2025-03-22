@@ -11,6 +11,7 @@ const AnswerQuestions: React.FC = () => {
   const handleLogout = () => {
     console.log('User logged out');
     localStorage.removeItem('ID');
+    window.location.href = '/';
   }
 
   return (
